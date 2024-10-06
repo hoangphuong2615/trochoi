@@ -18,7 +18,7 @@ function drop(event) {
         (trashId === 'can' && event.target.id === 'recycle') ||
         (trashId === 'bottle' && event.target.id === 'inorganic')) {
         
-        // Phát âm thanh
+        // Phát âm thanh khi trả lời đúng
         document.getElementById('correctSound').play();
         
         // Hiển thị thông báo "Chúc mừng bạn đã làm đúng!"
@@ -41,8 +41,22 @@ function drop(event) {
             message.style.opacity = '0'; // Thiết lập độ mờ về 0 để ẩn thông báo
         }, 1300);
     } else {
-        alert("Bạn đã chọn sai thùng rác!");
+        // Phát âm thanh khi trả lời sai
+        document.getElementById('wrongSound').play();
+        showErrorMessage("Bạn đã chọn sai thùng rác!");
     }
+}
+
+function showErrorMessage(text) {
+    const errorMessage = document.getElementById('errorMessage');
+    errorMessage.innerText = text;
+    errorMessage.style.display = 'block'; // Hiện thông báo lỗi
+    errorMessage.style.opacity = '1'; // Đặt độ mờ thành 1 để hiển thị
+
+    // Ẩn thông báo sau 2 giây
+    setTimeout(() => {
+        errorMessage.style.opacity = '0'; // Thiết lập độ mờ về 0 để ẩn thông báo
+    }, 2000);
 }
 
 function endGame() {
@@ -71,3 +85,4 @@ function endGame() {
         bin.ondragover = null; // Vô hiệu hóa dragover
     });
 }
+
