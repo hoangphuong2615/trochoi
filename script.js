@@ -85,4 +85,3 @@ function endGame() {
         bin.ondragover = null; // Vô hiệu hóa dragover
     });
 }
-
